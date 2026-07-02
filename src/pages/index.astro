@@ -11,6 +11,9 @@ import "../styles/global.css";
 		<meta name="generator" content={Astro.generator} />
 		<title>Nikhil Patel - Your Storefront Engineer</title>
 
+		<!-- Preload custom font to avoid a visible flash/swap on first paint -->
+		<link rel="preload" href="/Bosch.woff2" as="font" type="font/woff2" crossorigin>
+
 		<!-- Favicon -->
 		<link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="favicon.ico">
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
