@@ -1,0 +1,72 @@
+---
+import "../styles/global.css";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Nikhil Patel - Your Storefront Engineer</title>
+
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+	</head>
+	<body class="p-14">
+		<div class="announcement-bar mb-10 bg-orange-600">
+			<button class="announcement-arrow" type="button" data-dir="-1" aria-label="Previous announcement">‹</button>
+			<div class="announcement-viewport">
+				<ul class="announcement-list">
+					<li class="announcement-slide is-active">Available for international work</li>
+					<li class="announcement-slide">Let's build a storefront that loads fast and converts</li>
+				</ul>
+			</div>
+			<button class="announcement-arrow" type="button" data-dir="1" aria-label="Next announcement">›</button>
+		</div>
+
+		<div class="flex items-center justify-between">
+			<h1 class="text-9xl text-orange-600">Nikhil Patel</h1>
+		</div>
+		<p class="text-lg text-gray-600 text-orange-600 uppercase font-medium leading-5">Your Storefront Engineer</p>
+		<p class="text-lg text-gray-600 text-orange-600 leading-5">Based in New Delhi, India</p>
+
+		<div class="mt-8 max-w-xl">
+			<p class="text-orange-600">
+				3+ years building Shopify apps and storefronts that convert. I sweat the details —
+				UI/UX, page speed, Core Web Vitals — and ship code your team can actually maintain,
+				without breaking what already works.
+			</p>
+		</div>
+	</body>
+
+	<script>
+		const bar = document.querySelector<HTMLElement>(".announcement-bar");
+		const slides = Array.from(bar?.querySelectorAll<HTMLElement>(".announcement-slide") ?? []);
+		let active = 0;
+		let timer: ReturnType<typeof setInterval>;
+
+		function show(index: number) {
+			slides[active].classList.remove("is-active");
+			active = (index + slides.length) % slides.length;
+			slides[active].classList.add("is-active");
+		}
+
+		function restart() {
+			clearInterval(timer);
+			timer = setInterval(() => show(active + 1), 5000);
+		}
+
+		bar?.querySelectorAll<HTMLButtonElement>(".announcement-arrow").forEach((btn) => {
+			btn.addEventListener("click", () => {
+				show(active + Number(btn.dataset.dir));
+				restart();
+			});
+		});
+
+		restart();
+	</script>
+</html>
