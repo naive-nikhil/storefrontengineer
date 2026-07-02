@@ -32,6 +32,18 @@ body {
   position: relative;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.10;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='7' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix in='noise' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.33 0.33 0.34 0 0' result='alpha'/%3E%3CfeComponentTransfer in='alpha'%3E%3CfeFuncA type='linear' slope='3' intercept='-0.45'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 300px 300px;
+}
+
 h1 {
   font-family: "Bosch", serif;
 }
@@ -46,18 +58,28 @@ h1 {
 
 .announcement-arrow {
   flex-shrink: 0;
+  appearance: none;
   border: none;
   background: transparent;
   color: var(--color-background);
   font-size: 2rem;
-  line-height: 1;
+  line-height: 32px;
   cursor: pointer;
+  height: 32px;
   padding: 0 0.5rem;
   opacity: 0.7;
+  user-select: none;
   transition: opacity 0.15s ease;
 }
 
 .announcement-arrow:hover {
+  opacity: 1;
+}
+
+.announcement-arrow:focus-visible {
+  outline: 2px solid var(--color-background);
+  outline-offset: -4px;
+  border-radius: 4px;
   opacity: 1;
 }
 
@@ -73,7 +95,7 @@ h1 {
   margin: 0;
   padding: 0;
   list-style: none;
-  height: 100%;
+  height: 100%; 
 }
 
 .announcement-slide {
@@ -106,14 +128,3 @@ h1 {
   text-transform: lowercase;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.10;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.62 0.58' numOctaves='4' seed='17' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix in='noise' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.33 0.33 0.34 0 0' result='alpha'/%3E%3CfeComponentTransfer in='alpha'%3E%3CfeFuncA type='linear' slope='3' intercept='-0.45'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 600px 600px;
-}
