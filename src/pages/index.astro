@@ -12,49 +12,95 @@ import "../styles/global.css";
 		<title>Nikhil Patel - Your Storefront Engineer</title>
 
 		<!-- Preload custom font to avoid a visible flash/swap on first paint -->
-		<link rel="preload" href="/Bosch.woff2" as="font" type="font/woff2" crossorigin>
+		<link
+			rel="preload"
+			href="/Bosch.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
 
 		<!-- Favicon -->
-		<link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="favicon.ico">
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/favicon-16x16.png"
+		/>
+		<link rel="manifest" href="/site.webmanifest" />
 
 		<!-- Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body class="p-14">
 		<div class="announcement-bar mb-10 bg-orange-600">
-			<button class="announcement-arrow" type="button" data-dir="-1" aria-label="Previous announcement">‹</button>
+			<button
+				class="announcement-arrow"
+				type="button"
+				data-dir="-1"
+				aria-label="Previous announcement">‹</button
+			>
 			<div class="announcement-viewport">
 				<ul class="announcement-list">
-					<li class="announcement-slide is-active">Available for international work</li>
-					<li class="announcement-slide">Let's build a storefront that loads fast and converts</li>
+					<li class="announcement-slide is-active">
+						Available for international work
+					</li>
+					<li class="announcement-slide">
+						Let's build a storefront that loads fast and converts
+					</li>
 				</ul>
 			</div>
-			<button class="announcement-arrow" type="button" data-dir="1" aria-label="Next announcement">›</button>
+			<button
+				class="announcement-arrow"
+				type="button"
+				data-dir="1"
+				aria-label="Next announcement">›</button
+			>
 		</div>
 
 		<div class="flex items-center justify-between">
 			<h1 class="text-9xl text-orange-600">Nikhil Patel</h1>
 		</div>
-		<p class="text-lg text-gray-600 text-orange-600 uppercase font-medium leading-5">Your Storefront Engineer</p>
-		<p class="text-lg text-gray-600 text-orange-600 leading-5">Based in New Delhi, India</p>
+		<p
+			class="text-lg text-gray-600 text-orange-600 uppercase font-medium leading-5"
+		>
+			Your Storefront Engineer
+		</p>
+		<p class="text-lg text-gray-600 text-orange-600 leading-5">
+			Based in New Delhi, India
+		</p>
 
 		<div class="mt-8 max-w-xl">
 			<p class="text-orange-600">
-				3+ years building Shopify apps and storefronts that convert. I sweat the details —
-				UI/UX, page speed, Core Web Vitals — and ship code your team can actually maintain,
-				without breaking what already works.
+				3+ years building Shopify apps and storefronts that convert. I
+				sweat the details — UI/UX, page speed, Core Web Vitals — and
+				ship code your team can actually maintain, without breaking what
+				already works.
 			</p>
 		</div>
 	</body>
 
 	<script>
 		const bar = document.querySelector<HTMLElement>(".announcement-bar");
-		const slides = Array.from(bar?.querySelectorAll<HTMLElement>(".announcement-slide") ?? []);
+		const slides = Array.from(
+			bar?.querySelectorAll<HTMLElement>(".announcement-slide") ?? [],
+		);
 		let active = 0;
 		let timer: ReturnType<typeof setInterval>;
 
@@ -69,12 +115,14 @@ import "../styles/global.css";
 			timer = setInterval(() => show(active + 1), 5000);
 		}
 
-		bar?.querySelectorAll<HTMLButtonElement>(".announcement-arrow").forEach((btn) => {
-			btn.addEventListener("click", () => {
-				show(active + Number(btn.dataset.dir));
-				restart();
-			});
-		});
+		bar?.querySelectorAll<HTMLButtonElement>(".announcement-arrow").forEach(
+			(btn) => {
+				btn.addEventListener("click", () => {
+					show(active + Number(btn.dataset.dir));
+					restart();
+				});
+			},
+		);
 
 		restart();
 	</script>
