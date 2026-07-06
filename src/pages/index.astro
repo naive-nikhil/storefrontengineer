@@ -49,54 +49,108 @@ import "../styles/global.css";
 		/>
 	</head>
 	<body class="p-2 sm:p-10 bg-orange-50">
-		<div class="announcement-bar mb-10 bg-orange-600">
-			<button
-				class="announcement-arrow"
-				type="button"
-				data-dir="-1"
-				aria-label="Previous announcement">‹</button
-			>
-			<div class="announcement-viewport">
-				<ul class="announcement-list">
-					<li class="announcement-slide is-active">
-						Available for international work
-					</li>
-					<li class="announcement-slide">
-						Let's build a storefront that loads fast and converts
-					</li>
-				</ul>
+		<svg style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true">
+			<defs>
+				<filter id="inkFilter" x="-25%" y="-50%" width="150%" height="200%">
+					<feTurbulence
+						type="fractalNoise"
+						baseFrequency="0.035"
+						numOctaves="4"
+						seed="5"
+						result="n"></feTurbulence>
+					<feDisplacementMap
+						id="inkDisp"
+						in="SourceGraphic"
+						in2="n"
+						scale="0"
+						xChannelSelector="R"
+						yChannelSelector="G"
+						result="d"
+					>
+						<animate
+							attributeName="scale"
+							values="55;0"
+							keyTimes="0;1"
+							keySplines="0.16 1 0.3 1"
+							calcMode="spline"
+							dur="2s"
+							begin="0s"
+							fill="freeze"
+						></animate>
+					</feDisplacementMap>
+					<feGaussianBlur id="inkBlur" in="d" stdDeviation="0">
+						<animate
+							attributeName="stdDeviation"
+							values="6;0"
+							keyTimes="0;1"
+							keySplines="0.16 1 0.3 1"
+							calcMode="spline"
+							dur="3s"
+							begin="0s"
+							fill="freeze"
+						></animate>
+					</feGaussianBlur>
+				</filter>
+			</defs>
+		</svg>
+		<div class="page">
+			<div class="announcement-bar mb-10 bg-orange-600">
+				<button
+					class="announcement-arrow"
+					type="button"
+					data-dir="-1"
+					aria-label="Previous announcement">‹</button
+				>
+				<div class="announcement-viewport">
+					<ul class="announcement-list">
+						<li class="announcement-slide is-active">
+							Available for international work
+						</li>
+						<li class="announcement-slide">
+							Let's build a storefront that loads fast and converts
+						</li>
+					</ul>
+				</div>
+				<button
+					class="announcement-arrow"
+					type="button"
+					data-dir="1"
+					aria-label="Next announcement">›</button
+				>
 			</div>
-			<button
-				class="announcement-arrow"
-				type="button"
-				data-dir="1"
-				aria-label="Next announcement">›</button
+
+			<div class="flex items-center justify-between">
+				<h1 class="text-9xl text-orange-600">Nikhil Patel</h1>
+			</div>
+			<p
+				class="text-lg text-gray-600 text-orange-600 uppercase font-medium leading-5"
 			>
-		</div>
-
-		<div class="flex items-center justify-between">
-			<h1 class="text-9xl text-orange-600">Nikhil Patel</h1>
-		</div>
-		<p
-			class="text-lg text-gray-600 text-orange-600 uppercase font-medium leading-5"
-		>
-			Your Storefront Engineer
-		</p>
-		<p class="text-lg text-gray-600 text-orange-600 leading-5">
-			Based in New Delhi, India
-		</p>
-
-		<div class="mt-8 max-w-xl">
-			<p class="text-orange-600">
-				3+ years building Shopify apps and storefronts that convert. I
-				sweat the details — UI/UX, page speed, Core Web Vitals — and
-				ship code your team can actually maintain, without breaking what
-				already works.
+				Your Storefront Engineer
 			</p>
+			<p class="text-lg text-gray-600 text-orange-600 leading-5">
+				Based in New Delhi, India
+			</p>
+
+			<div class="mt-8 max-w-xl">
+				<p class="text-orange-600">
+					3+ years building Shopify apps and storefronts that convert. I
+					sweat the details — UI/UX, page speed, Core Web Vitals — and
+					ship code your team can actually maintain, without breaking
+					what already works.
+				</p>
+			</div>
 		</div>
 	</body>
 
 	<script>
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+			document
+				.querySelectorAll("#inkDisp animate, #inkBlur animate")
+				.forEach((a) => a.remove());
+			document.getElementById("inkDisp")?.setAttribute("scale", "0");
+			document.getElementById("inkBlur")?.setAttribute("stdDeviation", "0");
+		}
+
 		const bar = document.querySelector<HTMLElement>(".announcement-bar");
 		const slides = Array.from(
 			bar?.querySelectorAll<HTMLElement>(".announcement-slide") ?? [],
